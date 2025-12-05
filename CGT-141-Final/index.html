@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <title>Github Experiment - experimentation branch</title>
+  <link href="../css/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/grid.css" rel="stylesheet">
+  <script src="/css/assets/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body> 
+
+  
+  <style>
+    .content-buttons {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .content-button-buy,
+    .content-button-sell {
+      width: 300%;
+      margin-top: 30%;
+    }
+
+    #containers {
+      margin-top: 2%;
+    }
+
+    #containers hr {
+      display: none;
+    }
+  </style>
+
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a id="logo" href="../index.html"><img src="/images/logo.png" alt="logo"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        </ul>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <a href="account/signup.html"><button class="btn btn-primary me-md-2" type="button">Sign Up</button></a>
+          <a href="account/login.html"><button class="btn btn-primary" type="button">Log In</button></a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Carousel Section on Top -->
+  <div class="carousel-section w-100" style="height: 400px; overflow: hidden;">
+    <div id="carouselExample" class="carousel slide h-100" data-bs-ride="carousel">
+      <div class="carousel-inner h-100">
+        <div class="carousel-item active h-100">
+          <img src="images/home page image.jpg" class="d-block w-100 h-100" alt="..." style="object-fit: cover;">
+        </div>
+        <div class="carousel-item h-100">
+          <img src="images/home page image2.jpg" class="d-block w-100 h-100" alt="..." style="object-fit: cover;">
+        </div>
+        <div class="carousel-item h-100">
+          <img src="images/home page image3.jpeg" class="d-block w-100 h-100" alt="..." style="object-fit: cover;">
+        </div>
+        <div class="carousel-item h-100">
+          <img src="images/home page image4.jpg" class="d-block w-100 h-100" alt="..." style="object-fit: cover;">
+        </div>
+        <div class="carousel-item h-100">
+          <img src="images/Screenshot 2024-11-06 134617.png" class="d-block w-100 h-100" alt="..."
+            style="object-fit: cover;">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" id="containers" style="background-color: transparent; padding: 0px;">
+    <!-- Flexbox layout updated to column for top-down alignment -->
+    <div class="d-flex flex-column align-items-center">
+
+      <!-- Content Section Below -->
+      <div class="content-section text-center w-full">
+        <h1 class="content-title my-4" style="color: #C6587F; font-weight: bolder; font-size: 4rem;">
+          Welcome!
+        </h1>
+        <h4 class="content-subtitle mb-2 mx-5" style="color: #F4AF73; font-weight: bold;">
+          Sustainable solutions for kids' ever-changing wardrobes
+        </h4>
+        <h5 class="content-description mb-5 pb-2 mx-5" style="color: #F4AF73; margin: 0px 200px;">
+          Our platform intends to build a supportive community that values quality, affordability, and convenience.
+        </h5>
+
+        <!-- Buttons -->
+        <div class="content-buttons d-flex justify-content-evenly">
+          <a href="buy/buygoods.html" class="btn-container">
+            <button type="button" class="btn btn-secondary w-100 content-button-sell m-0 px-5">Buy</button>
+          </a>
+          <a href="sell/sellgoods.html" class="btn-container">
+            <button type="button" class="btn btn-secondary w-100 content-button-sell m-0 px-5">Sell</button>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+  <div class="container">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+      <p class="col-md-4 mb-0 text-body-secondary">&copy; 2024 Company, Inc</p>
+
+      <ul class="nav col-md-4 justify-content-end">
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Contact Us</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Get The App</a></li>
+      </ul>
+    </footer>
+  </div>
+</body>
+
+</html>

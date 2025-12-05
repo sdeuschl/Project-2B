@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+
+<head>
+  <script src="css/assets/js/color-modes.js"></script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Buy Goods</title>
+
+  <link href="../css/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/grid.css" rel="stylesheet">
+  <script src="/css/assets/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+
+  <!-- jQuery and Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a id="logo" href="../index.html"><img src="/images/logo.png" alt="logo"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon "></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        </ul>
+
+        <div class="cart-icon-container">
+          <button class="btn px-4 py-3" onclick="toggleCart()">
+            <i class="fas fa-shopping-cart"></i>
+          </button>
+          <span id="cartBadge" class="cart-badge" style="display: none;">0</span>
+        </div>
+
+        <div class="dropdown px-3">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false"></button>
+          <div class="dropdown-menu dropdown-menu-custom" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="../buy/buygoods.html">Buy</a>
+            <a class="dropdown-item" href="../sell/sellgoods.html">Sell</a>
+            <a class="dropdown-item" href="../index.html">Home</a>
+          </div>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <a href="/account/signup.html"><button class="btn btn-primary me-md-2" type="button">Sign Up</button></a>
+          <a href="/account/login.html"><button class="btn btn-primary" type="button">Log In</button></a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+  <div id="buyGoods">
+    <img src="/images/home page image.jpg" class="img-fluid"
+      style="height:200px; width: 100%; padding: 20px; object-fit: cover;"> <!--change once other pages are loaded-->
+
+    <div class="container mt-4">
+      <div class="row">
+        <!-- Sidebar Menu -->
+        <aside class="col-md-3">
+          <div id="categoryButtons" class="list-group mb-3">
+            <button class="list-group-item list-group-item-action active" onclick="applyCategoryFilter('All')"
+              id="allCategoryButton">All</button>
+            <button class="list-group-item list-group-item-action" onclick="applyCategoryFilter('Baby')">Baby</button>
+            <button class="list-group-item list-group-item-action"
+              onclick="applyCategoryFilter('Toddler')">Toddler</button>
+            <button class="list-group-item list-group-item-action" onclick="applyCategoryFilter('Kids')">Kids</button>
+            <button class="list-group-item list-group-item-action" onclick="applyCategoryFilter('Tops')">Tops</button>
+            <button class="list-group-item list-group-item-action"
+              onclick="applyCategoryFilter('Bottoms')">Bottoms</button>
+            <button class="list-group-item list-group-item-action"
+              onclick="applyCategoryFilter('Onesies')">Onesies</button>
+          </div>
+
+          <!-- Filter Toggle Button -->
+          <div id="filterToggle" class='py-2' onclick="toggleAdvancedFilters()">
+            <i class="fas fa-sliders-h"></i>
+            <span>All Filters</span>
+          </div>
+
+          <!-- Advanced Filters Section - Initially Hidden -->
+          <div id="advancedFilters" style="display: none;">
+            <h5>Advanced Filters</h5>
+            <div id="categoryFilters" class="mb-3">
+              <!-- Category checkboxes will be dynamically loaded here -->
+            </div>
+
+            <h6>Price Range</h6>
+            <div class="price-slider-container">
+              <input type="range" id="minPrice" min="0" max="500" value="0" oninput="updatePriceFilter()"
+                class="price-slider">
+              <div class="price-value" id="minPriceLabel">$0</div>
+              <input type="range" id="maxPrice" min="0" max="500" value="500" oninput="updatePriceFilter()"
+                class="price-slider">
+              <div class="price-value" id="maxPriceLabel">$500</div>
+            </div>
+            <button class="btn btn-secondary my-3" onclick="resetToCategoryFilter()">Disable Advanced Filters</button>
+          </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="col-md-9">
+          <div class="mb-3">
+            <input type="text" id="searchBox" class="form-control" placeholder="Search.." oninput="applyFilters()">
+          </div>
+          <div id="itemsGrid" class="row g-3">
+            <!-- Items will be dynamically loaded here -->
+          </div>
+        </main>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Floating detail panel -->
+  <div id="detailPanel" onclick=''>
+    <div id="detailContent" class="d-flex flex-column" onclick="event.stopPropagation()">
+
+      <a onClick="restoreDetailPanel()" class="back btn">Back</a>
+      <div class="d-flex justify-content-evenly">
+        <img id="detailImage" src="" alt="Product Image">
+        <div class="details">
+          <h2 id="detailTitle"></h2>
+          <h2 id="detailSeller"></h2>
+          <p id="detailPrice" class="text-muted"></p>
+          <p id="detailDescription"></p>
+          <button class="btn btn-primary" onclick="addToCart()">Add to Cart</button>
+          <hr class="m-20">
+          <div class="container">
+            <div class="flex justify-content-center align-items-center" style="display:flex;">
+              <img src="../images/truck-256.webp" class="icon-view" alt="">
+              <p class="text-center mb-0 ps-3">Average Shipping</p>
+            </div>
+            <div class="flex justify-content-center align-items-center" style="display:flex;">
+              <img src="../images/check-box-64.webp" class="icon-view" alt="">
+              <p class="text-center mb-0 ps-3">Purchase Protection</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cart Modal -->
+  <div id="cartModal" onclick="">
+    <div id="cartContent" onclick="event.stopPropagation()">
+      <div class="cart-items">
+        <h4>Shopping Cart</h4>
+        <div id="cartItems"></div>
+      </div>
+      <div class="cart-summary">
+        <h5>Order Summary</h5>
+        <div class="total">
+          <strong>Total Items:</strong> <span id="cartItemCount">0</span>
+        </div>
+        <div class="total">
+          <strong>Total Cost:</strong> <span id="cartTotal">$0.00</span>
+        </div>
+        <button class="btn btn-primary checkout-btn mt-3" onclick="openCheckoutModal()">Checkout</button>
+        <button class="btn btn-primary checkout-btn mt-3" onclick="restoreDetailPanel()">Keep Shopping</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkout Modal -->
+  <div id="checkoutModal" onclick="">
+    <div id="checkoutContent" onclick="event.stopPropagation()">
+      <form action="check_out.php" method="POST">
+        <div class="checkout-form-title">Checkout</div>
+
+        <!-- Personal Details Section -->
+        <div class="form-section-title">Personal Details</div>
+        <div class="mb-3">
+          <label for="fullName" class="form-label">Full Name</label>
+          <input type="text" class="form-control" id="fullName" name="fullName" required>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email Address</label>
+          <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="mb-3">
+          <label for="phone" class="form-label">Phone Number</label>
+          <input type="tel" class="form-control" id="phone" name="phone" required>
+        </div>
+
+        <!-- Shipping Details Section -->
+        <div class="form-section-title">Shipping Address</div>
+        <div class="mb-3">
+          <label for="address" class="form-label">Street Address</label>
+          <input type="text" class="form-control" id="address" name="address" required>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label for="city" class="form-label">City</label>
+            <input type="text" class="form-control" id="city" name="city" required>
+          </div>
+          <div class="col-md-6">
+            <label for="zip" class="form-label">ZIP Code</label>
+            <input type="text" class="form-control" id="zip" name="zip" required>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="country" class="form-label">Country</label>
+          <input type="text" class="form-control" id="country" name="country" required>
+        </div>
+
+        <!-- Payment Information Section -->
+        <div class="form-section-title">Payment Information</div>
+        <div class="mb-3">
+          <label for="cardNumber" class="form-label">Credit Card Number</label>
+          <input type="text" class="form-control" id="cardNumber" name="cardNumber" required>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label for="expDate" class="form-label">Expiration Date</label>
+            <input type="text" class="form-control" id="expDate" name="expDate" placeholder="MM/YY" required>
+          </div>
+          <div class="col-md-6">
+            <label for="cvv" class="form-label">CVV</label>
+            <input type="text" class="form-control" id="cvv" name="cvv" required>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <a href ="buyconfirm.html">
+          <button type="submit" class="btn btn-primary w-100">Place Order</button>
+        </a>
+        <button type="button" class="btn btn-secondary w-100 mt-2" onClick="restoreDetailPanel()">Cancel</button>
+      </form>
+    </div>
+  </div>
+
+  
+  <!-- Footer -->
+  <div class="container footer">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+      <p class="col-md-4 mb-0 text-body-secondary">&copy; 2024 Company, Inc</p>
+
+      <a href="/"
+        class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+        <svg class="bi me-2" width="40" height="32">
+          <use xlink:href="#bootstrap" />
+        </svg>
+      </a>
+
+      <ul class="nav col-md-4 justify-content-end">
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Contact Us</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Get The App</a></li>
+      </ul>
+    </footer>
+  </div>
+
+
+  <script>
+    let items = [];
+    let cart = {};
+    let advancedFilterActive = false;
+    let maxItemPrice = 500; // Default maximum price
+
+    async function loadItems() {
+      const response = await fetch('items.json');
+      items = await response.json();
+      maxItemPrice = Math.max(...items.map(item => item.price));
+      document.getElementById("minPrice").max = maxItemPrice;
+      document.getElementById("maxPrice").max = maxItemPrice;
+      document.getElementById("maxPriceLabel").textContent = `$${maxItemPrice}`;
+
+      initializeFilters();
+      displayItems(items); // Show all items initially
+    }
+
+    function updateCartBadge() {
+      const cartBadge = document.getElementById("cartBadge");
+      const uniqueItemCount = Object.keys(cart).length;
+
+      if (uniqueItemCount > 0) {
+        cartBadge.style.display = "inline-block";
+        cartBadge.textContent = uniqueItemCount;
+      } else {
+        cartBadge.style.display = "none";
+      }
+    }
+
+    function initializeFilters() {
+      const categories = [...new Set(items.map(item => item.category))];
+      const categoryFilters = document.getElementById('categoryFilters');
+      categoryFilters.innerHTML = categories.map(category => `
+              <div class="form-check">
+                  <input type="checkbox" class="form-check-input" id="${category}" value="${category}" onchange="applyFilters()">
+                  <label class="form-check-label" for="${category}">${category}</label>
+              </div>
+          `).join('');
+    }
+
+    function toggleAdvancedFilters() {
+      const advancedFilters = document.getElementById('advancedFilters');
+      advancedFilterActive = !advancedFilterActive;
+      advancedFilters.style.display = advancedFilterActive ? 'block' : 'none';
+
+      if (advancedFilterActive) {
+        disableCategoryButtons(); // Deactivate category buttons
+        document.getElementById("allCategoryButton").click(); // Default to show all if switching to advanced filters
+      } else {
+        enableCategoryButtons(); // Reactivate category buttons
+        resetToCategoryFilter(); // Reset to category buttons when advanced filters are disabled
+      }
+    }
+
+    function disableCategoryButtons() {
+      const categoryButtons = document.querySelectorAll("#categoryButtons .list-group-item");
+      categoryButtons.forEach(button => button.classList.add("disabled-category-button"));
+    }
+
+    function enableCategoryButtons() {
+      const categoryButtons = document.querySelectorAll("#categoryButtons .list-group-item");
+      categoryButtons.forEach(button => button.classList.remove("disabled-category-button"));
+    }
+
+    function applyCategoryFilter(category) {
+      if (advancedFilterActive) return; // Ignore category buttons if advanced filter is active
+
+      resetActiveClass(category);
+      const filteredItems = items.filter(item => category === 'All' || item.category === category);
+      displayItems(filteredItems);
+    }
+
+    function applyFilters() {
+      const searchTerm = document.getElementById('searchBox').value.toLowerCase();
+      const selectedCategories = Array.from(document.querySelectorAll('#categoryFilters input:checked')).map(input => input.value);
+      const minPrice = parseFloat(document.getElementById('minPrice').value);
+      const maxPrice = parseFloat(document.getElementById('maxPrice').value);
+
+      const filteredItems = items.filter(item => {
+        const matchesSearch = item.description.toLowerCase().includes(searchTerm) || item.itemname.toLowerCase().includes(searchTerm);
+        const matchesCategory = !advancedFilterActive || selectedCategories.length === 0 || selectedCategories.includes(item.category);
+        const matchesPrice = !advancedFilterActive || (item.price >= minPrice && item.price <= maxPrice);
+        return matchesSearch && matchesCategory && matchesPrice;
+      });
+
+      displayItems(filteredItems);
+    }
+
+    function updatePriceFilter() {
+      const minPrice = document.getElementById('minPrice').value;
+      const maxPrice = document.getElementById('maxPrice').value;
+      document.getElementById('minPriceLabel').textContent = `$${minPrice}`;
+      document.getElementById('maxPriceLabel').textContent = `$${maxPrice}`;
+      applyFilters();
+    }
+
+    function displayItems(itemsToDisplay) {
+      const itemsGrid = document.getElementById('itemsGrid');
+      itemsGrid.innerHTML = '';
+      itemsToDisplay.forEach(item => {
+        const itemElement = document.createElement('div');
+        itemElement.classList.add('col-6', 'col-md-4', 'col-lg-3');
+        itemElement.innerHTML = `
+                  <div class="card h-100 text-center">
+                      <img src="img/${item.url}" class="card-img-top" alt="${item.itemname}">
+                      <div class="card-body px-0.5 d-flex flex-column justify-content-center align-items-center">
+                          <button onclick="showDetailPanel('${item.url}', '${item.itemname}', '${item.price}', '${item.description}', '${item.seller}')" class=" btn p-1 card-title h6 text-decoration-none">${item.itemname}</button>
+                          <p class="card-title h6 text-decoration-none">$${item.price}</p>
+                          <p class="card-title h6 text-decoration-none">@${item.seller}</p>
+                      </div>
+                  </div>
+              `;
+        itemsGrid.appendChild(itemElement);
+      });
+    }
+
+    // Load "View Item" page
+
+    // function showItemPanel(imageUrl, title, price, description, seller) {
+    //   buyGoods.innerHTML = '';
+
+    //   document.getElementById('itemImage').src = `img/${imageUrl}`;
+    //   document.getElementById('itemTitle').textContent = title;
+    //   document.getElementById('itemSeller').textContent = `@${seller}`;
+    //   document.getElementById('itemPrice').textContent = `$${price}`;
+    //   document.getElementById('itemDescription').textContent = description;
+    //   document.getElementById('itemPanel').style.display = 'flex';
+    // }
+
+    // function hideItemPanel() {
+    //   document.getElementById('itemPanel').style.display = 'none';
+    // }
+
+    function resetToCategoryFilter() {
+      advancedFilterActive = false;
+      document.getElementById("advancedFilters").style.display = "none";
+      enableCategoryButtons(); // Enable category buttons when advanced filters are disabled
+      document.getElementById("allCategoryButton").click(); // Reset to "All" category
+    }
+
+    function showDetailPanel(imageUrl, title, price, description, seller) {
+      document.getElementById('buyGoods').style.display = 'none';
+
+
+      document.getElementById('detailImage').src = `img/${imageUrl}`;
+      document.getElementById('detailTitle').textContent = title;
+      document.getElementById('detailSeller').textContent = `@${seller}`;
+      document.getElementById('detailPrice').textContent = `$${price}`;
+      document.getElementById('detailDescription').textContent = description;
+      document.getElementById('detailPanel').style.display = 'flex';
+    }
+
+    function hideDetailPanel() {
+      document.getElementById('detailPanel').style.display = 'none';
+    }
+
+    function restoreDetailPanel() {
+      document.getElementById('detailPanel').style.display = 'none';
+      document.getElementById('cartModal').style.display = 'none';
+      document.getElementById('checkoutModal').style.display = 'none';
+      document.getElementById('buyGoods').style.display = 'inline';
+    }
+
+    function addToCart() {
+
+
+      const itemName = document.getElementById('detailTitle').textContent;
+      const price = parseFloat(document.getElementById('detailPrice').textContent.slice(1));
+      const imageUrl = document.getElementById('detailImage').src;
+
+      // const itemName = document.getElementById('itemTitle').textContent;
+      // const price = parseFloat(document.getElementById('itemPrice').textContent.slice(1));
+      // const imageUrl = document.getElementById('itemImage').src;
+
+      if (cart[itemName]) {
+        cart[itemName].quantity += 1;
+      } else {
+        cart[itemName] = { price, quantity: 1, imageUrl };
+      }
+      updateCart();
+      updateCartBadge();
+      // hideDetailPanel();
+    }
+
+    function updateCart() {
+      const cartItems = document.getElementById('cartItems');
+      cartItems.innerHTML = '';
+      let total = 0;
+      let itemCount = 0;
+
+      for (const [name, item] of Object.entries(cart)) {
+        const lineTotal = item.price * item.quantity;
+        total += lineTotal;
+        itemCount += item.quantity;
+
+        cartItems.innerHTML += `
+                  <div class="cart-item">
+                      <div>
+                          <img src="${item.imageUrl}" alt="${name}">
+                          <span>${name}</span>
+                      </div>
+                      <span>$${item.price.toFixed(2)}</span>
+                      <div class="quantity-controls">
+                          <button onclick="changeQuantity('${name}', -1)" class="btn btn-sm btn-info">−</button>
+                          <span>${item.quantity}</span>
+                          <button onclick="changeQuantity('${name}', 1)" class="btn btn-sm btn-info">+</button>
+                      </div>
+                      <span>$${lineTotal.toFixed(2)}</span>
+                      <i class="fas fa-trash" onclick="removeFromCart('${name}')"></i>
+                  </div>
+              `;
+      }
+      document.getElementById('cartTotal').textContent = `$${total.toFixed(2)}`;
+      document.getElementById('cartItemCount').textContent = itemCount;
+    }
+
+    function changeQuantity(name, amount) {
+      if (cart[name].quantity + amount > 0) {
+        cart[name].quantity += amount;
+      } else {
+        delete cart[name];
+      }
+      updateCart();
+      updateCartBadge();
+    }
+
+    function removeFromCart(name) {
+      delete cart[name];
+      updateCart();
+      updateCartBadge();
+    }
+
+    function toggleCart() {
+
+      document.getElementById('buyGoods').style.display = 'none';
+      document.getElementById('detailPanel').style.display = 'none';
+      document.getElementById('checkoutModal').style.display = 'none';
+
+      document.getElementById('cartModal').style.display = 'flex';
+
+      // const cartModal = document.getElementById('cartModal');
+      // if (cartModal.style.display === 'flex') {
+      //   cartModal.style.display = 'none';
+      //   document.getElementById('buyGoods').style.display = 'inline';
+      // } else {
+      //   document.getElementById('buyGoods').style.display = 'none';
+      //   document.getElementById('detailPanel').style.display = 'none';
+      //   cartModal.style.display = 'flex';
+      //}
+    }
+
+    function openCheckoutModal() {
+      document.getElementById('buyGoods').style.display = 'none';
+      document.getElementById('detailPanel').style.display = 'none';
+      document.getElementById('cartModal').style.display = 'none';
+
+      document.getElementById('checkoutModal').style.display = 'flex';
+    }
+
+    function closeCheckoutModal() {
+      document.getElementById('checkoutModal').style.display = 'none';
+    }
+
+    function resetActiveClass(category) {
+      const buttons = document.querySelectorAll('.list-group-item');
+      buttons.forEach(btn => {
+        if (btn.textContent.trim() === category) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+    }
+
+    window.onload = loadItems;
+  </script>
+</body>
+
+</html>
