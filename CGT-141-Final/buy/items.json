@@ -9,6 +9,15 @@
         "seller": "Tiny Treasures"
     },
     {
+        "itemid": 2,
+        "itemname": "Kids' Pajamas",
+        "description": "Cute, comfy two piece pajama set.",
+        "price": 10.99,
+        "url": "../../images/toddler_pjs.jpeg",
+        "category": "Kids",
+        "seller": "Tiny Adventures"
+    },
+    {
         "itemid": 4,
         "itemname": "Toddler T-Shirt",
         "description": "Bright, colorful T-shirt perfect for toddlers on the go.",
@@ -23,7 +32,7 @@
         "description": "Comfortable joggers for toddlers, ideal for active play.",
         "price": 14.99,
         "url": "../../images/toddler_joggers.jpeg",
-        "category": "Toddler",
+        "category": "Bottoms",
         "seller": "Playtime Gear"
     },
     {
