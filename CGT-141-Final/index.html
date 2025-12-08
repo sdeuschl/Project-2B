@@ -24,7 +24,8 @@
     .content-title {
       color: #C6587F;
       font-weight: bolder;
-      font-size: 3.5rem;
+      text-transform: uppercase;
+      font-size: 100px;
     }
 
     .content-subtitle,
@@ -104,6 +105,27 @@
     footer {
       background-color: #fff;
     }
+
+    /* [AI Change] Image Gallery — remove padding & force flush alignment */
+    .gallery-row {
+      margin: 0;
+    }
+
+    .gallery-row > div {
+      padding: 0 !important;
+    }
+
+    .gallery-img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .gallery-img:hover {
+      transform: scale(1.02);
+    }
   </style>
 </head>
 
@@ -129,25 +151,71 @@
   </div>
 </nav>
 
-<div class="carousel-section">
-  <div id="carouselExample" class="carousel slide h-100" data-bs-ride="carousel">
-    <div class="carousel-inner h-100">
 
-      <div class="carousel-item active h-100">
-        <img src="images/home page image.jpg" class="d-block w-100 h-100" style="object-fit:cover;">
-      </div>
+<!-- [AI Change] 6-IMAGE INTERACTIVE GALLERY -->
+<div class="container-fluid">
+  <div class="row gallery-row">
 
-      <div class="carousel-item h-100">
-        <img src="images/home page image2.jpg" class="d-block w-100 h-100" style="object-fit:cover;">
-      </div>
+    <div class="col-2">
+      <img src="images/baby_bodysuit.jpeg"
+           class="gallery-img"
+           data-bs-toggle="modal"
+           data-bs-target="#imageModal"
+           data-img="https://via.placeholder.com/1200x800?text=Image+1+Large">
+    </div>
 
-      <div class="carousel-item h-100">
-        <img src="images/home page image3.jpeg" class="d-block w-100 h-100" style="object-fit:cover;">
-      </div>
+    <div class="col-2">
+      <img src="images/classic_tshirt.jpeg"
+           class="gallery-img"
+           data-bs-toggle="modal"
+           data-bs-target="#imageModal"
+           data-img="https://via.placeholder.com/1200x800?text=Image+2+Large">
+    </div>
 
+    <div class="col-2">
+      <img src="images/toddler_hoodie.jpeg"
+           class="gallery-img"
+           data-bs-toggle="modal"
+           data-bs-target="#imageModal"
+           data-img="https://via.placeholder.com/1200x800?text=Image+3+Large">
+    </div>
+
+    <div class="col-2">
+      <img src="images/toddler_joggers.jpeg"
+           class="gallery-img"
+           data-bs-toggle="modal"
+           data-bs-target="#imageModal"
+           data-img="https://via.placeholder.com/1200x800?text=Image+4+Large">
+    </div>
+
+    <div class="col-2">
+      <img src="images/toddler_pjs.jpeg"
+           class="gallery-img"
+           data-bs-toggle="modal"
+           data-bs-target="#imageModal"
+           data-img="https://via.placeholder.com/1200x800?text=Image+5+Large">
+    </div>
+
+    <div class="col-2">
+      <img src="images/toddler_tshirt.jpeg"
+           class="gallery-img"
+           data-bs-toggle="modal"
+           data-bs-target="#imageModal"
+           data-img="https://via.placeholder.com/1200x800?text=Image+6+Large">
+    </div>
+
+  </div>
+</div>
+
+<!-- [AI Change] IMAGE MODAL LIGHTBOX -->
+<div class="modal fade" id="imageModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content bg-transparent border-0">
+      <img id="modalImage" class="w-100 rounded shadow">
     </div>
   </div>
 </div>
+
 
 <div class="container text-center py-5">
 
@@ -198,6 +266,7 @@
     </div>
   </div>
 </div>
+
 <!-- [AI CHANGE] Testimonials heading -->
 <section class="testimonials">
   <div class="container">
@@ -271,6 +340,18 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- [AI Change] Modal image script -->
+<script>
+  const modalImage = document.getElementById('modalImage');
+  const imgs = document.querySelectorAll('.gallery-img');
+
+  imgs.forEach(img => {
+    img.addEventListener('click', () => {
+      modalImage.src = img.getAttribute('data-img');
+    });
+  });
+</script>
 
 </body>
 </html>
