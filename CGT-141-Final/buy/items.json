@@ -4,34 +4,16 @@
         "itemname": "Baby Bodysuit",
         "description": "Soft cotton bodysuit for babies, perfect for everyday wear.",
         "price": 12.99,
-        "url": "../../images/baby_bodysuit.webp",
+        "url": "../../images/baby_bodysuit.jpeg",
         "category": "Baby",
         "seller": "Tiny Treasures"
-    },
-    {
-        "itemid": 2,
-        "itemname": "Baby Booties",
-        "description": "Warm and cozy booties to keep baby’s feet comfortable.",
-        "price": 8.99,
-        "url": "../../images/baby_booties.jpg",
-        "category": "Baby",
-        "seller": "Baby Bliss"
-    },
-    {
-        "itemid": 3,
-        "itemname": "Baby Blanket",
-        "description": "Soft, breathable blanket for babies, ideal for naps and outings.",
-        "price": 15.99,
-        "url": "../../images/baby_blanket.jpg",
-        "category": "Baby",
-        "seller": "SnuggleTime"
     },
     {
         "itemid": 4,
         "itemname": "Toddler T-Shirt",
         "description": "Bright, colorful T-shirt perfect for toddlers on the go.",
         "price": 10.99,
-        "url": "../../images/toddler_tshirt.jpg",
+        "url": "../../images/toddler_tshirt.jpeg",
         "category": "Toddler",
         "seller": "Tiny Adventures"
     },
@@ -40,7 +22,7 @@
         "itemname": "Toddler Joggers",
         "description": "Comfortable joggers for toddlers, ideal for active play.",
         "price": 14.99,
-        "url": "../../images/toddler_joggers.jpg",
+        "url": "../../images/toddler_joggers.jpeg",
         "category": "Toddler",
         "seller": "Playtime Gear"
     },
@@ -49,116 +31,26 @@
         "itemname": "Toddler Hoodie",
         "description": "Soft hoodie to keep toddlers warm on chilly days.",
         "price": 18.99,
-        "url": "../../images/toddler_hoodie.jpg",
+        "url": "../../images/toddler_hoodie.jpeg",
         "category": "Toddler",
         "seller": "Cozy Kids"
-    },
-    {
-        "itemid": 7,
-        "itemname": "Kids Jeans",
-        "description": "Durable jeans for kids, ideal for school and play.",
-        "price": 22.99,
-        "url": "../../images/kids_jeans.jpg",
-        "category": "Kids",
-        "seller": "Kids Style"
-    },
-    {
-        "itemid": 8,
-        "itemname": "Kids Raincoat",
-        "description": "Waterproof raincoat for kids, perfect for rainy days.",
-        "price": 25.99,
-        "url": "../../images/kids_raincoat.jpg",
-        "category": "Kids",
-        "seller": "Weather Ready"
-    },
-    {
-        "itemid": 9,
-        "itemname": "Kids Backpack",
-        "description": "Lightweight backpack for kids, great for school essentials.",
-        "price": 17.99,
-        "url": "../../images/kids_backpack.jpg",
-        "category": "Kids",
-        "seller": "School Gear"
     },
     {
         "itemid": 10,
         "itemname": "Classic T-Shirt",
         "description": "Simple, comfortable T-shirt for casual wear.",
         "price": 9.99,
-        "url": "../../images/classic_tshirt.webp",
+        "url": "../../images/classic_tshirt.jpeg",
         "category": "Tops",
         "seller": "Everyday Apparel"
-    },
-    {
-        "itemid": 11,
-        "itemname": "Striped Polo",
-        "description": "Classic striped polo, suitable for casual outings.",
-        "price": 16.99,
-        "url": "../../images/striped_polo.jpg",
-        "category": "Tops",
-        "seller": "Trendy Tees"
-    },
-    {
-        "itemid": 12,
-        "itemname": "Graphic Tee",
-        "description": "Fun graphic tee with a bold design.",
-        "price": 12.99,
-        "url": "../../images/graphic_tee.jpg",
-        "category": "Tops",
-        "seller": "Urban Wear"
-    },
-    {
-        "itemid": 13,
-        "itemname": "Cargo Pants",
-        "description": "Sturdy cargo pants with extra pockets for convenience.",
-        "price": 19.99,
-        "url": "../../images/cargo_pants.jpg",
-        "category": "Bottoms",
-        "seller": "Outdoor Outfitters"
-    },
-    {
-        "itemid": 14,
-        "itemname": "Leggings",
-        "description": "Stretchy leggings, great for everyday comfort.",
-        "price": 11.99,
-        "url": "../../images/leggings.jpg",
-        "category": "Bottoms",
-        "seller": "Comfy Fits"
-    },
-    {
-        "itemid": 15,
-        "itemname": "Denim Shorts",
-        "description": "Classic denim shorts for a casual look.",
-        "price": 13.99,
-        "url": "../../images/denim_shorts.jpg",
-        "category": "Bottoms",
-        "seller": "Casual Cuts"
     },
     {
         "itemid": 16,
         "itemname": "Basic Onesie",
         "description": "Simple and comfortable onesie for all-day wear.",
         "price": 9.99,
-        "url": "../../images/basic_onesie.webp",
+        "url": "../../images/baby_bodysuit.jpeg",
         "category": "Onesies",
         "seller": "Baby Basics"
-    },
-    {
-        "itemid": 17,
-        "itemname": "Animal Print Onesie",
-        "description": "Adorable onesie with fun animal prints.",
-        "price": 11.99,
-        "url": "../../images/animal_onesie.webp",
-        "category": "Onesies",
-        "seller": "Cute & Cozy"
-    },
-    {
-        "itemid": 18,
-        "itemname": "Organic Cotton Onesie",
-        "description": "Eco-friendly onesie made from organic cotton.",
-        "price": 14.99,
-        "url": "../../images/organic_onesie.jpg",
-        "category": "Onesies",
-        "seller": "Green Kids"
     }
 ]
